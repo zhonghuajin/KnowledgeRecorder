@@ -1,7 +1,6 @@
 package com.jim.knowledgerrecorder;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.image.BufferedImage;
@@ -16,6 +15,12 @@ public class ClipboardWatcher implements ClipboardOwner {
 
     private Clipboard systemClipboard;
     private ExecutorService executor;
+
+    private static  boolean enable = true;
+
+    public static void setEnable(boolean enable) {
+        ClipboardWatcher.enable = enable;
+    }
 
     public ClipboardWatcher() {
         systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -99,6 +104,9 @@ public class ClipboardWatcher implements ClipboardOwner {
 
     private void updateFile(String data) {
 
+        if (!enable) {
+            return;
+        }
         Main.clipboardContent = data;
 
     }

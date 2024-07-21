@@ -15,7 +15,13 @@ public class GlobalKeyListener implements NativeKeyListener {
                 (e.getModifiers() & NativeKeyEvent.ALT_MASK) != 0 &&
                 e.getKeyCode() == NativeKeyEvent.VC_A) {
             System.out.println("组合键 Ctrl + Shift + Alt + A 被触发");
-            Main.saveClipBoardContern();
+            ClipboardWatcher.setEnable(false);
+            try {
+                Main.saveClipBoardContern();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            ClipboardWatcher.setEnable(true);
         }
     }
 

@@ -28,6 +28,7 @@ public class Main {
 
         // 如果用户取消输入则退出
         if (fileName == null) {
+            clipboardContent = "";
             return;
         }
 
