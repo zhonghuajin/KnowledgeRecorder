@@ -32,6 +32,9 @@ public class Main {
             return;
         }
 
+        // 把文件名中的非法字符替换为下划线
+        fileName = fileName.replaceAll("[\\\\/:*?\"<>|]", "_");
+
         // 以uuid为文件名保存到本地
         File file = new File("D:\\BaiduSyncdisk\\技术\\" + fileName + ".txt");
 
