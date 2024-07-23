@@ -1,8 +1,10 @@
 package com.jim.knowledgerrecorder;
+
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyListener;
 import org.jnativehook.keyboard.NativeKeyEvent;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -17,11 +19,24 @@ public class GlobalKeyListener implements NativeKeyListener {
             System.out.println("组合键 Ctrl + Shift + Alt + A 被触发");
             ClipboardWatcher.setEnable(false);
             try {
-                Main.saveClipBoardContern();
+                Main.saveClipBoardKnowledge();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
             ClipboardWatcher.setEnable(true);
+        }
+
+        // 检查是否同时按下 Ctrl, Shift, Alt 以及 X 键
+        if ((e.getModifiers() & NativeKeyEvent.CTRL_MASK) != 0 &&
+                (e.getModifiers() & NativeKeyEvent.SHIFT_MASK) != 0 &&
+                (e.getModifiers() & NativeKeyEvent.ALT_MASK) != 0 &&
+                e.getKeyCode() == NativeKeyEvent.VC_X) {
+            System.out.println("组合键 Ctrl + Shift + Alt + X 被触发");
+            try {
+                Main.saveClipBoardWord();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
