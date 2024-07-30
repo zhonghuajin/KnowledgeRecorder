@@ -34,9 +34,9 @@ public class Main {
         }
 
         // 把文件名中的非法字符替换为下划线
-        fileName = fileName.replaceAll("[\\\\/:*?\"<>|]", "_");
+        fileName = fileName.replaceAll("[\\\\/:*?\"<>| ]", "_");
 
-        File file = new File("D:\\BaiduSyncdisk\\技术\\" + fileName + ".txt");
+        File file = new File("D:\\BaiduSyncdisk\\技术\\" + fileName + ".md");
 
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(clipboardContent);
