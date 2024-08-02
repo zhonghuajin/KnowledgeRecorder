@@ -62,7 +62,7 @@ public class Main {
         }
 
 //        JOptionPane.showMessageDialog(null, "剪贴板内容已保存到文件：" + file.getAbsolutePath());
-        showMessageDialogWithTimeout("剪贴板内容已保存到文件：" + file.getAbsolutePath(), 200);
+        showMessageDialogWithTimeout("剪贴板内容已保存到文件：" + file.getAbsolutePath(), 700);
         // 清空剪贴板内容
         clipboardContent = "";
     }
@@ -93,7 +93,7 @@ public class Main {
         }
 
 //        JOptionPane.showMessageDialog(null, "剪贴板内容已保存到文件：" + file.getAbsolutePath());
-        showMessageDialogWithTimeout("剪贴板内容已保存到文件：" + file.getAbsolutePath(), 200);
+        showMessageDialogWithTimeout("剪贴板内容已保存到文件：" + file.getAbsolutePath(), 700);
 
         // 清空剪贴板内容
         clipboardContent = "";
