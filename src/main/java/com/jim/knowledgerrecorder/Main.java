@@ -16,6 +16,23 @@ public class Main {
         GlobalKeyListener.saveSignalMonitor();
     }
 
+    /**
+     * 显示一个消息对话框，该对话框在指定的时间后自动关闭。
+     * @param message 要显示的消息
+     * @param timeout 显示消息的时间，以毫秒为单位
+     */
+    public static void showMessageDialogWithTimeout(String message, int timeout) {
+        JOptionPane pane = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = pane.createDialog(null, "信息");
+
+        // 设置定时器来自动关闭对话框
+        Timer timer = new Timer(timeout, e -> dialog.dispose());
+        timer.setRepeats(false);
+        timer.start();
+
+        dialog.setVisible(true);
+    }
+
     public static void saveClipBoardKnowledge() {
 
         // 判断剪贴板内容是否为空
@@ -44,8 +61,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        JOptionPane.showMessageDialog(null, "剪贴板内容已保存到文件：" + file.getAbsolutePath());
-
+//        JOptionPane.showMessageDialog(null, "剪贴板内容已保存到文件：" + file.getAbsolutePath());
+        showMessageDialogWithTimeout("剪贴板内容已保存到文件：" + file.getAbsolutePath(), 200);
         // 清空剪贴板内容
         clipboardContent = "";
     }
@@ -75,7 +92,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        JOptionPane.showMessageDialog(null, "剪贴板内容已保存到文件：" + file.getAbsolutePath());
+//        JOptionPane.showMessageDialog(null, "剪贴板内容已保存到文件：" + file.getAbsolutePath());
+        showMessageDialogWithTimeout("剪贴板内容已保存到文件：" + file.getAbsolutePath(), 200);
 
         // 清空剪贴板内容
         clipboardContent = "";
