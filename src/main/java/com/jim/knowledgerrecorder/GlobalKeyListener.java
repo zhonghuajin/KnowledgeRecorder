@@ -29,9 +29,8 @@ public class GlobalKeyListener implements NativeKeyListener {
         // 检查是否同时按下 Ctrl, Shift, Alt 以及 X 键
         if ((e.getModifiers() & NativeKeyEvent.CTRL_MASK) != 0 &&
                 (e.getModifiers() & NativeKeyEvent.SHIFT_MASK) != 0 &&
-                (e.getModifiers() & NativeKeyEvent.ALT_MASK) != 0 &&
                 e.getKeyCode() == NativeKeyEvent.VC_X) {
-            System.out.println("组合键 Ctrl + Shift + Alt + X 被触发");
+            System.out.println("组合键 Ctrl + Shift + X 被触发");
             try {
                 Main.saveClipBoardWord();
             } catch (Exception ex) {
