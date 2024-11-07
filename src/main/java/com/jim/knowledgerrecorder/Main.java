@@ -6,6 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import org.jnativehook.GlobalScreen;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Main {
 
     public static String clipboardContent = "";
@@ -13,9 +17,26 @@ public class Main {
     private static  int delay = 500;
 
     public static void main(String[] args) {
+
+        try {
+            // 禁用JNativeHook的默认日志输出
+            Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+            logger.setLevel(Level.OFF);
+            logger.setUseParentHandlers(false);
+
+            // 注册全局鼠标监听器
+            GlobalScreen.registerNativeHook();
+            GlobalScreen.addNativeMouseListener(new GlobalMouseDoubleClickListener());
+            System.out.println("全局双击监听已启动。按下Ctrl + C以复制选中的内容。");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ClipboardWatcher clipboardWatcher = new ClipboardWatcher();
         clipboardWatcher.startMonitoring();
         GlobalKeyListener.saveSignalMonitor();
+
     }
 
     /**
@@ -55,7 +76,7 @@ public class Main {
         // 把文件名中的非法字符替换为下划线
         fileName = fileName.replaceAll("[\\\\/:*?\"<>| ]", "_");
 
-        File file = new File("D:\\BaiduSyncdisk\\技术\\" + fileName + ".md");
+        File file = new File("C:\\Users\\admin\\Documents\\BaiduSyncdisk\\技术\\" + fileName + ".md");
 
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(clipboardContent);
